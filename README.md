@@ -30,6 +30,14 @@ npm run dev
 
 The application will be available at [http://localhost:3000](http://localhost:3000).
 
+### Deploying to Vercel
+In the Vercel project settings, add this environment variable for Production, Preview, and Development:
+```text
+DATABASE_URL=file:./dev.db
+```
+
+The SQLite database is stored at `prisma/dev.db`, and the build script generates Prisma Client before building Next.js. For production workloads, use a hosted PostgreSQL database instead of SQLite because Vercel's filesystem is not persistent.
+
 ## API Endpoints
 
 ### 1. `GET /api/public/products`
