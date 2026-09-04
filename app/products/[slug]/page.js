@@ -2,6 +2,13 @@ import { notFound } from 'next/navigation';
 import { getProductBySlug, listProducts } from '@/lib/catalog';
 import ProductClient from './ProductClient';
 
+export async function generateStaticParams() {
+  const products = await listProducts();
+  return products.map((product) => ({ slug: product.slug }));
+}
+
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }) {
   // Await params if using Next.js 15
   const resolvedParams = await params;
